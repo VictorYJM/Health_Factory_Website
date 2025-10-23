@@ -1,0 +1,120 @@
+/* Alpagartas */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import "tailwindcss";
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+};
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --animate-rotate-border: border-rotate 2s linear infinite;
+
+    @keyframes border-rotate {
+        to { --border-angle: 360deg; }
+    };
+
+    --font-main: "Roboto Mono", sans serif;
+
+    --color-background-light: #eeeeee;
+    --color-background-dark: #000000;
+
+    --color-text-light: #cfcfcf;
+    --color-text-dark: #202020;
+
+    --color-border-light: #cccccc;
+    --color-border-dark: #575757;
+
+    /* Blue */
+    --color-blue-1: #0077b6;
+    --color-blue-2: #00b4d8;
+    --color-blue-3: #00b4d8;
+    --color-blue-4: #90e0ef;
+
+    /* Purple / Blue */
+    --color-glow: #6366f1;
+
+    /* Brown */
+    --color-brown-1: #E6D3B3;
+    --color-brown-2: #C9B07A;
+    --color-brown-3: #A67C3A;
+    --color-brown-4: #855C1B;
+    --color-brown-5: #5B3E0B;
+    --color-brown-6: #3C2806;
+
+    /* Green */
+    --color-green-1: #A8FFB0;
+    --color-green-2: #7DFF8F;
+    --color-green-3: #4DFF6E;
+    --color-green-4: #006633;
+    --color-green-5: #007A3D;
+    --color-green-6: #00994C;
+};
+
+@layer components {
+    .bg-main { @apply bg-background-light dark:bg-background-dark transition-colors duration-200; };
+    .text-main { @apply text-text-dark dark:text-text-light transition-colors duration-200; };
+    .border-main { @apply border-border-light dark:border-border-dark; };
+
+    .bg-main-inverse { @apply bg-background-dark dark:bg-background-light transition-colors duration-200; };
+    .text-main-inverse { @apply text-text-light dark:text-text-dark transition-colors duration-200; };
+
+    .gradient-icon-light-theme { @apply bg-gradient-to-r from-green-4 via-green-5 to-green-6; };
+    .gradient-icon-dark-theme { @apply dark:bg-gradient-to-r dark:from-green-1 dark:via-green-2 dark:to-green-3; };
+
+    .gradient-title-light-theme { @apply bg-gradient-to-r from-blue-1 to-blue-2; };
+    .gradient-title-dark-theme { @apply dark:bg-gradient-to-r dark:from-blue-3 dark:to-blue-4; };
+
+    .gradient-food-light-theme { @apply bg-gradient-to-r from-brown-4 via-brown-5 to-brown-6; };
+    .gradient-food-dark-theme { @apply bg-gradient-to-r dark:from-brown-1 dark:via-brown-2 dark:to-brown-3; };
+
+    .navbar-icon { @apply font-semibold p-2 rounded-full hover:bg-background-dark hover:text-text-light dark:hover:bg-background-light dark:hover:text-text-dark; };
+    .creator-icon { @apply text-text-dark/70 dark:text-text-light/70 transition-all duration-200 hover:text-text-dark dark:hover:text-text-light hover:scale-110; };
+
+    .menu-name { @apply inline-flex items-center justify-center gap-x-1 font-semibold text-sm capitalize cursor-pointer; };
+    .menu-item { @apply absolute left-0 z-10 mt-4 w-40 origin-top-left rounded-md shadow-lg focus:outline-none 
+                        divide-y divide-border-light dark:divide-border-dark
+                        data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 
+                        data-[enter]:duration-100 data-[enter]:ease-out data-[leave]:duration-75 data-[leave]:ease-in; };
+
+    .menu-button { @apply flex items-center gap-x-1.5 w-full px-4 py-2 text-left text-sm 
+                        data-[focus]:bg-text-light data-[focus]:text-text-dark
+                        dark:data-[focus]:bg-text-dark dark:data-[focus]:text-text-light; };
+
+    .minimal-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    };
+
+    .minimal-scrollbar::-webkit-scrollbar-track { background: transparent; };
+    .minimal-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--color-border-dark);
+        border-radius: 10px;
+        border: 2px solid var(--color-background-light);
+    };
+
+    .dark .minimal-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--color-border-light);
+        border: 2px solid var(--color-background-dark);
+    };
+};
+
+html::-webkit-scrollbar { width: 12px; };
+html::-webkit-scrollbar-track { background: var(--color-background-light); };
+html.dark::-webkit-scrollbar-track { background: var(--color-background-dark); };
+
+html::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-dark);
+    border-radius: 10px;
+    border: 3px solid var(--color-background-light);
+};
+
+html.dark::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-light);
+    border-radius: 10px;
+    border: 3px solid var(--color-background-dark);
+};
